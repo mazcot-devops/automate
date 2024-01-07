@@ -1,1 +1,3 @@
 QA Workshop
+
+git pull
