@@ -5,6 +5,13 @@ pipeline {
         CONTAINER_NAME = 'node-app-container'
     }
     stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    credentialsId: 'art-cred',
+                    url: 'https://github.com/mazcot-devops/automate'
+            }
+        }
         stage('Build Image') {
             steps {
                 script {
