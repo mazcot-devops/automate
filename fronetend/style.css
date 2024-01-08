@@ -1,28 +1,37 @@
-body {
+body.blue-white-theme {
+  background-color: #f0f8ff; 
+  color: #333;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   text-align: center;
 }
 
-#userForm {
-  margin-bottom: 20px;
-}
-
-input[type="text"], input[type="password"] {
+.input-field {
   margin: 10px 0;
   padding: 8px;
   width: 200px;
+  border: 1px solid #ddd;
 }
 
-button {
+.button-group button {
   padding: 10px 15px;
   margin: 5px;
   cursor: pointer;
+  background-color: #fff; 
+  border: 1px solid #ddd;
+  outline: none;
 }
 
-#response {
+.button-group button:hover {
+  background-color: #e7e7e7; 
+}
+
+.response-container {
   margin-top: 20px;
   padding: 10px;
   border: 1px solid #ddd;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
 }

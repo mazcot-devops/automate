@@ -45,7 +45,7 @@ pipeline {
         stage('Run Robotframework Tests') {
             steps {
                 script {
-                    sh "docker exec ${CONTAINER_NAME} robot /app/automate-test/test.robot"
+                    sh "docker exec ${CONTAINER_NAME} robot /app/automate-test/test-backend.robot"
                 }
             }
         }

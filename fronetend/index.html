@@ -5,24 +5,17 @@
     <title>User Management</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1>User Management </h1>
-
+<body class="blue-white-theme">
+    <h1>User Management</h1>
     <div id="userForm">
-        <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
-        <button onclick="register()">Register</button>
-        <button onclick="login()">Login</button>
-        <input type="password" id="newPassword" placeholder="New Password">
-        <button onclick="updatePassword()">Update Password</button>
-        <button onclick="deleteUser()">Delete User</button>
+        <input type="text" id="username" placeholder="Username" class="input-field">
+        <input type="password" id="password" placeholder="Password" class="input-field">
+        <div class="button-group">
+            <button id="register-btn" class="action-button">Register</button>
+            <button id="login-btn" class="action-button">Login</button>
+        </div>
     </div>
-
-    <button onclick="getAllUsers()">Get All Users</button>
-    <button onclick="checkStatus()">Check API Status</button>
-
-    <div id="response"></div>
-
+    <div id="response" class="response-container"></div>
     <script src="script.js"></script>
 </body>
 </html>
