@@ -63,7 +63,7 @@ pipeline {
             steps {
                 script {
                     sh "docker cp ${CONTAINER_NAME}:/app/result.json /var/lib/jenkins/workspace/k6/result.json"
-                    archiveArtifacts artifacts: 'k6/result.json', allowEmptyArchive: true
+                    archiveArtifacts artifacts: '/var/lib/jenkins/workspace/k6/result.json', allowEmptyArchive: true
                 }
             }
         }
