@@ -39,6 +39,7 @@ export default function () {
     });
     summaryData.registerTime += registerTime;
     console.log(`Register Time: ${registerTime} ms`);
+    summaryData.totalTime += registerTime;
 
     // Login
     startTime = new Date();
@@ -52,6 +53,7 @@ export default function () {
     });
     summaryData.loginTime += loginTime;
     console.log(`Login Time: ${loginTime} ms`);
+    summaryData.totalTime += loginTime;
 
     // Change password
     startTime = new Date();
@@ -66,6 +68,7 @@ export default function () {
     });
     summaryData.updateTime += updateTime;
     console.log(`Update Time: ${updateTime} ms`);
+    summaryData.totalTime += updateTime;
 
     // Delete user
     startTime = new Date();
@@ -79,8 +82,5 @@ export default function () {
     });
     summaryData.deleteTime += deleteTime;
     console.log(`Delete Time: ${deleteTime} ms`);
-    
-    let totalTime = registerTime + loginTime + updateTime + deleteTime;
-    summaryData.totalTime += totalTime;
-    console.log(`Total Time: ${totalTime} ms`);
+    summaryData.totalTime += deleteTime;
 }
