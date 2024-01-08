@@ -63,6 +63,18 @@ pipeline {
             steps {
                 script {
                     sh "docker cp ${CONTAINER_NAME}:/app/result.json /var/lib/jenkins/workspace/k6/result.json"
+                archiveArtifacts artifacts: 'result.json', allowEmptyArchive: true
+                }
+            }
+        }
+        stage('Display k6 Summary Data') {
+            steps {
+                script {
+                    def summaryData = readJSON file: 'result.json'
+                    echo "Register Time: ${summaryData.registerTime} ms"
+                    echo "Login Time: ${summaryData.loginTime} ms"
+                    echo "Update Time: ${summaryData.updateTime} ms"
+                    echo "Delete Time: ${summaryData.deleteTime} ms"
                 }
             }
         }
