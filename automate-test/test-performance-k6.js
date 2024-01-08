@@ -22,10 +22,8 @@ export default function () {
         },
     };
 
-   
-    console.log(`Sending register request for user: ${username}`);
+
     let registerRes = http.post(`http://localhost:3000/register`, JSON.stringify({ username, password }), newUserParams);
-    console.log(`Register response for user: ${username}:`, JSON.stringify(registerRes, null, 2));
     check(registerRes, {
         'is status 200': (r) => r.status === 200,
         'is user registered': (r) => r.body.indexOf('User registered successfully') !== -1,
