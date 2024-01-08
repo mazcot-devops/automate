@@ -5,13 +5,6 @@ pipeline {
         CONTAINER_NAME = 'node-app-container'
     }
     stages {
-        stage('Build Image') {
-            steps {
-                script {
-                    docker.build("$IMAGE_NAME", '.')
-                }
-            }
-        }
         stage('Cleanup-before-stage') {
             steps {
                 script {
@@ -21,8 +14,16 @@ pipeline {
                     } else {
                         sh "docker stop ${CONTAINER_NAME}"
                         sh "docker rm ${CONTAINER_NAME}"
-                        echo "Container ${CONTAINER_NAME} stopped and removed."
+                        sh "docker rmi ${IMAGE_NAME}"
+                        echo "Container ${CONTAINER_NAME} and ${IMAGE_NAME} stopped and removed."
                     }
+                }
+            }
+        }
+        stage('Build Image') {
+            steps {
+                script {
+                    docker.build("$IMAGE_NAME", '.')
                 }
             }
         }
