@@ -70,7 +70,7 @@ pipeline {
         stage('Display k6 Summary Data') {
             steps {
                 script {
-                    def summaryData = readJSON file: 'result.json'
+                    def summaryData = new groovy.json.JsonSlurper().parseText(readFile('result.json'))
                     echo "Register Time: ${summaryData.registerTime} ms"
                     echo "Login Time: ${summaryData.loginTime} ms"
                     echo "Update Time: ${summaryData.updateTime} ms"
