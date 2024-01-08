@@ -15,7 +15,6 @@ export let summaryData = {
     loginTime: 0,
     updateTime: 0,
     deleteTime: 0,
-    totalTime: 0,
 };
 
 export default function () {
@@ -83,4 +82,12 @@ export default function () {
     summaryData.deleteTime += deleteTime;
     console.log(`Delete Time: ${deleteTime} ms`);
     summaryData.totalTime += deleteTime;
+}
+
+export function AverageSummary(data) {
+    console.log(`Total Register Time: ${summaryData.registerTime} ms`);
+    console.log(`Total Login Time: ${summaryData.loginTime} ms`);
+    console.log(`Total Update Time: ${summaryData.updateTime} ms`);
+    console.log(`Total Delete Time: ${summaryData.deleteTime} ms`);
+    console.log(`Total Time: ${summaryData.totalTime} ms`);
 }
