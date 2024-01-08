@@ -4,12 +4,19 @@ import { check } from 'k6';
 export let options = {
     stages: [
         { duration: '20s', target: 10 }, 
-        { duration: '30s', target: 50 }, 
+        { duration: '40s', target: 50 }, 
         { duration: '1m', target: 100 },
-        { duration: '30s', target: 70 }, 
-        { duration: '20s', target: 40 }, 
+        { duration: '30s', target: 80 }, 
+        { duration: '20s', target: 50 }, 
         { duration: '30s', target: 0 }, 
     ],
+};
+
+export let summaryData = {
+    registerTime: 0,
+    loginTime: 0,
+    updateTime: 0,
+    deleteTime: 0,
 };
 
 export default function () {
@@ -21,7 +28,7 @@ export default function () {
         },
     };
 
-  
+    
     let startTime = new Date();
     let registerRes = http.post(`http://localhost:3000/register`, JSON.stringify({ username, password }), newUserParams);
     let endTime = new Date();
@@ -32,7 +39,7 @@ export default function () {
         'is user registered': (r) => r.body.indexOf('User registered successfully') !== -1,
     });
 
-    console.log(`Register time for user ${username}: ${registerTime} ms`);
+    summaryData.registerTime += registerTime;
 
     
     startTime = new Date();
@@ -45,7 +52,7 @@ export default function () {
         'is login successful': (r) => r.body.indexOf('Login successful') !== -1,
     });
 
-    console.log(`Login time for user ${username}: ${loginTime} ms`);
+    summaryData.loginTime += loginTime;
 
     
     startTime = new Date();
@@ -59,7 +66,7 @@ export default function () {
         'is password updated': (r) => r.body.indexOf('Password updated successfully') !== -1,
     });
 
-    console.log(`Update password time for user ${username}: ${updateTime} ms`);
+    summaryData.updateTime += updateTime;
 
     
     startTime = new Date();
@@ -72,5 +79,5 @@ export default function () {
         'is user deleted': (r) => r.body.indexOf('User deleted successfully') !== -1,
     });
 
-    console.log(`Delete user time for user ${username}: ${deleteTime} ms`);
+    summaryData.deleteTime += deleteTime;
 }
