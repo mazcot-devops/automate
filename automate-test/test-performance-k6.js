@@ -7,7 +7,6 @@ export let options = {
         { duration: '1m', target: 150 }, 
         { duration: '30s', target: 0 }, 
     ],
-    output: 'result.json', 
 };
 
 export default function () {
