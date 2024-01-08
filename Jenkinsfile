@@ -35,13 +35,6 @@ pipeline {
                 }
             }
         }
-        stage('Check Container Status') {
-            steps {
-                script {
-                    sh "docker logs node-app-container" 
-                }
-            }
-        }
         stage('Run Robotframework Tests') {
             steps {
                 script {
