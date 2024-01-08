@@ -1,5 +1,5 @@
 
-QA WorkShop
+QA Workshop
 
 
 
