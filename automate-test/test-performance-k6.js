@@ -1,5 +1,7 @@
 import http from 'k6/http';
 import { check, Trend } from 'k6';
+import { Trend } from 'k6/metrics';
+
 
 
 const durationRegister = new Trend('duration_register');
