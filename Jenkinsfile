@@ -42,7 +42,7 @@ pipeline {
                 }
             }
         }
-        stage('Run Robot Tests') {
+        stage('Run Robotframework Tests') {
             steps {
                 script {
                     sh "docker exec ${CONTAINER_NAME} robot /app/automate-test/test.robot"
@@ -58,7 +58,7 @@ pipeline {
                 }
             }
         }
-        stage('Performance Test') {
+        stage('Run Performance Test') {
             steps {
                 script {
                     sh "docker exec node-app-container k6 run /app/automate-test/test-performance-k6.js --out json=result.json"
