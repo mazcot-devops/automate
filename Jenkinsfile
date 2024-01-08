@@ -66,18 +66,6 @@ pipeline {
                 }
             }
         }
-        stage('Display k6 Summary Data') {
-            steps {
-                script {
-                    def resultData = readFile('result.json')
-                    def summaryData = new groovy.json.JsonSlurper().parseText(resultData)
-                    echo "Register Time: ${summaryData.registerTime} ms"
-                    echo "Login Time: ${summaryData.loginTime} ms"
-                    echo "Update Time: ${summaryData.updateTime} ms"
-                    echo "Delete Time: ${summaryData.deleteTime} ms"
-                }
-            }
-        }
         stage('Cleanup after stage') {
             steps {
                 script {

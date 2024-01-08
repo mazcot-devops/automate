@@ -37,6 +37,7 @@ export default function () {
         'is user registered': (r) => r.body.indexOf('User registered successfully') !== -1,
     });
     summaryData.registerTime += registerTime;
+    console.log(`Register Time: ${registerTime} ms`);
 
     //Login
     startTime = new Date();
@@ -49,6 +50,7 @@ export default function () {
         'is login successful': (r) => r.body.indexOf('Login successful') !== -1,
     });
     summaryData.loginTime += loginTime;
+    console.log(`Login Time: ${loginTime} ms`);
 
     //Change password
     startTime = new Date();
@@ -62,6 +64,7 @@ export default function () {
         'is password updated': (r) => r.body.indexOf('Password updated successfully') !== -1,
     });
     summaryData.updateTime += updateTime;
+    console.log(`Update Time: ${updateTime} ms`);
 
     //Delete user
     startTime = new Date();
@@ -74,4 +77,5 @@ export default function () {
         'is user deleted': (r) => r.body.indexOf('User deleted successfully') !== -1,
     });
     summaryData.deleteTime += deleteTime;
+    console.log(`Delete Time: ${deleteTime} ms`);
 }
