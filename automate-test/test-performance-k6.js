@@ -1,6 +1,7 @@
 import http from 'k6/http';
 import { check, Trend } from 'k6';
 
+
 const durationRegister = new Trend('duration_register');
 const durationLogin = new Trend('duration_login');
 const durationUpdate = new Trend('duration_update');
@@ -25,7 +26,8 @@ export default function () {
             'Content-Type': 'application/json',
         },
     };
-    
+
+   
     let startRegister = Date.now();
     let registerRes = http.post(`http://localhost:3000/register`, JSON.stringify({ username, password }), newUserParams);
     durationRegister.add(Date.now() - startRegister);
@@ -34,6 +36,7 @@ export default function () {
         'is user registered': (r) => r.body.indexOf('User registered successfully') !== -1,
     });
 
+   
     let startLogin = Date.now();
     let loginRes = http.post(`http://localhost:3000/login`, JSON.stringify({ username, password }), newUserParams);
     durationLogin.add(Date.now() - startLogin);
@@ -42,6 +45,7 @@ export default function () {
         'is login successful': (r) => r.body.indexOf('Login successful') !== -1,
     });
 
+    
     let newPassword = `${password}_new`;
     let startUpdate = Date.now();
     let updateRes = http.put(`http://localhost:3000/update`, JSON.stringify({ username, newPassword }), newUserParams);
@@ -51,6 +55,7 @@ export default function () {
         'is password updated': (r) => r.body.indexOf('Password updated successfully') !== -1,
     });
 
+    
     let startDelete = Date.now();
     let deleteRes = http.del(`http://localhost:3000/delete`, JSON.stringify({ username, password: newPassword }), newUserParams);
     durationDelete.add(Date.now() - startDelete);

@@ -5,7 +5,7 @@ pipeline {
         CONTAINER_NAME = 'node-app-container'
     }
     stages {
-        stage('Cleanup-before-stage') {
+        stage('Cleanup before stage') {
             steps {
                 script {
                     def containerExists = sh(script: "docker ps -aq -f name=${CONTAINER_NAME}", returnStdout: true).trim()
@@ -13,7 +13,7 @@ pipeline {
                         sh "docker stop ${CONTAINER_NAME}"
                         sh "docker rm ${CONTAINER_NAME}"
                         sh "docker rmi ${IMAGE_NAME}"
-                        echo "Container ${CONTAINER_NAME} and ${IMAGE_NAME} stopped and removed."
+                        echo "Container ${CONTAINER_NAME} and ${IMAGE_NAME} image stopped and removed."
                     } else {
                         echo "Container ${CONTAINER_NAME} not found, proceeding to the next stage."
                     }
@@ -66,7 +66,7 @@ pipeline {
                 }
             }
         }
-        stage('Cleanup') {
+        stage('Cleanup after stage') {
             steps {
                 script {
                     sh "docker stop ${CONTAINER_NAME}"
