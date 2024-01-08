@@ -8,14 +8,14 @@ pipeline {
         stage('Cleanup-before-stage') {
             steps {
                 script {
-                    def containerExists = sh(script: "docker ps -q -f name=${CONTAINER_NAME}", returnStatus: true)
-                    if (containerExists == 0) {
-                        echo "Container ${CONTAINER_NAME} not found, proceeding to the next stage."
-                    } else {
+                    def containerExists = sh(script: "docker ps -aq -f name=${CONTAINER_NAME}", returnStdout: true).trim()
+                    if (containerExists) {
                         sh "docker stop ${CONTAINER_NAME}"
                         sh "docker rm ${CONTAINER_NAME}"
                         sh "docker rmi ${IMAGE_NAME}"
                         echo "Container ${CONTAINER_NAME} and ${IMAGE_NAME} stopped and removed."
+                    } else {
+                        echo "Container ${CONTAINER_NAME} not found, proceeding to the next stage."
                     }
                 }
             }
