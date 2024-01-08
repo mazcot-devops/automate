@@ -13,7 +13,7 @@ pipeline {
                         sh "docker stop ${CONTAINER_NAME}"
                         sh "docker rm ${CONTAINER_NAME}"
                         sh "docker rmi ${IMAGE_NAME}"
-                        echo "Container ${CONTAINER_NAME} and ${IMAGE_NAME} image stopped and removed."
+                        echo "Container${CONTAINER_NAME} and ${IMAGE_NAME}image stopped and removed."
                     } else {
                         echo "Container ${CONTAINER_NAME} not found, proceeding to the next stage."
                     }
