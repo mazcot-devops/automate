@@ -1,6 +1,0 @@
-apiVersion: v2
-name: workshop-automate
-description: helm chart for workshop-automate
-type: application
-version: 1.0.0
-appVersion: "1.0"

@@ -1,6 +1,6 @@
 body.blue-white-theme {
-  background-color: #f0f8ff; 
-  color: #333;
+  background-color: #add8e6;
+  color: #000000;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -8,30 +8,60 @@ body.blue-white-theme {
 }
 
 .input-field {
-  margin: 10px 0;
+  margin: 10px auto 20px auto;
   padding: 8px;
-  width: 200px;
-  border: 1px solid #ddd;
+  width: 180px; 
+  border: 3px solid #000; 
+  display: block;
+  box-sizing: border-box;
 }
 
-.button-group button {
+.action-button {
   padding: 10px 15px;
-  margin: 5px;
+  margin: 20px auto;
   cursor: pointer;
-  background-color: #fff; 
-  border: 1px solid #ddd;
-  outline: none;
+  background-color: #fff;
+  border: 3px solid #000; 
+  display: block;
+  width: 180px; 
+  font-weight: bold; 
+  box-sizing: border-box;
 }
 
-.button-group button:hover {
-  background-color: #e7e7e7; 
+.action-button:hover {
+  background-color: #e7e7e7;
 }
 
 .response-container {
   margin-top: 20px;
   padding: 10px;
   border: 1px solid #ddd;
-  width: 300px;
+  width: 180px;
   margin-left: auto;
   margin-right: auto;
+}
+
+
+.login-active #registerForm {
+  display: none;
+}
+
+.login-active #login-toggle-btn {
+  display: block;
+}
+
+.login-active #loginForm {
+  display: block;
+}
+
+.register-active #loginForm {
+  display: none;
+}
+
+.register-active #register-toggle-btn {
+  display: block;
+}
+
+.register-active #registerForm {
+  display: block;
 }

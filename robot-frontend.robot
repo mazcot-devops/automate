@@ -1,40 +1,45 @@
-* Settings *
-Library           RequestsLibrary
+*** Settings ***
+Library           seleniumlibrary
 
-* Variables *
+*** Variables ***
 ${BASE_URL}       http://localhost:3000
+${CHROME_DRIVER_PATH}       /path/to/chromedriver
 
-* Test Cases *
+*** Test Cases ***
 Register User
-    ${session}=    Create Session    session    ${BASE_URL}
-    &{data}=    Create Dictionary    username=testuser    password=testpass
-    ${response}=    POST On Session    session    /register    json=${data}
-    Check Response Code    ${response.status_code}    200
+    [Tags]    registration
+    [Setup]    Open Browser    ${BASE_URL}    chrome    executable_path=${CHROME_DRIVER_PATH}
+    Input Text    //*[@id="register-username"]    testuser
+    Input Text    //*[@id="register-password"]    testpass
+    Click Element    //*[@id="register-btn"]
+    Wait Until Element Is Visible    //*[@id="login-username"]
+    [Teardown]    Close Browser
 
 Login User
-    ${session}=    Create Session    session    ${BASE_URL}
-    &{data}=    Create Dictionary    username=testuser    password=testpass
-    ${response}=    POST On Session    session    /login    json=${data}
-    Check Response Code    ${response.status_code}    200
+    [Tags]    login
+    [Setup]    Open Browser    ${BASE_URL}    chrome    executable_path=${CHROME_DRIVER_PATH}
+    Input Text    //*[@id="login-username"]    testuser
+    Input Text    //*[@id="login-password"]    testpass
+    Click Element    //*[@id="login-btn"]
+    Wait Until Element Is Visible    //*[@id="update-username"]
+    [Teardown]    Close Browser
 
 Update User Password
-    ${session}=    Create Session    session    ${BASE_URL}
-    &{data}=    Create Dictionary    username=testuser    newPassword=newpass123
-    ${response}=    PUT On Session    session    /update    json=${data}
-    Check Response Code    ${response.status_code}    200
+    [Tags]    update
+    [Setup]    Open Browser    ${BASE_URL}    chrome    executable_path=${CHROME_DRIVER_PATH}
+    Input Text    //*[@id="update-username"]    testuser
+    Input Text    //*[@id="change-password"]    newpass123
+    Click Element    //*[@id="change-password-btn"]
+    Wait Until Element Is Visible    //*[@id="delete-username"]
+    [Teardown]    Close Browser
 
 Delete User
-    ${session}=    Create Session    session    ${BASE_URL}
-    &{data}=    Create Dictionary    username=testuser    password=testpass
-    ${response}=    DELETE On Session    session    /delete    json=${data}
-    Check Response Code    ${response.status_code}    200
+    [Tags]    delete
+    [Setup]    Open Browser    ${BASE_URL}    chrome    executable_path=${CHROME_DRIVER_PATH}
+    Input Text    //*[@id="delete-username"]    testuser
+    Input Text    //*[@id="delete-password"]    newpass123
+    Click Element    //*[@id="delete-user-btn"]
+    Wait Until Element Is Visible    //*[@id="register-username"]
+    [Teardown]    Close Browser
 
-Get All Users
-    ${session}=    Create Session    session    ${BASE_URL}
-    ${response}=    GET On Session    session    /users
-    Check Response Code    ${response.status_code}    200
 
-* Keywords *
-Check Response Code
-    [Arguments]    ${actual_code}    ${expected_code}
-    Run Keyword If    '${actual_code}' != '${expected_code}'    Fail    Expected status code to be '${expected_code}' but was '${actual_code}'.
